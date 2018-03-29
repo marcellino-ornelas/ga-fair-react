@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import Nav from "../Nav/Nav";
+import { Route, Switch, Redirect } from "react-router-dom";
+
+import HomeContainer from "../../containers/Home/HomeContainer"
+
+import './App.css';
 
 class App extends Component {
   render() {
@@ -9,9 +13,13 @@ class App extends Component {
         <header className="App-header">
           <Nav/>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <main>
+          <Switch>
+            <Route exact path="/" component={ HomeContainer } />
+            <Route exact path="/check" render={ ()=> <div>This is a tester page</div> } />
+            <Route path="/*" render={()=> <Redirect to="/" /> } />
+          </Switch>
+        </main>
       </div>
     );
   }

@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { Navbar } from "react-materialize";
-import { NavItem } from "react-materialize";
+import { NavLink } from "react-router-dom";
 import './Nav.css';
 
 class Nav extends Component {
+  constructor(){
+    super();
+    this.state = {
 
+    }
+  }
   render() {
     return (
       <div>
         <Navbar brand="WAYFAIR" right>
-          <NavItem href="#">Bye</NavItem>
-          <NavItem href="#">Hey</NavItem>
+          <NavLink to="/"> Home </NavLink>
+          <NavLink to="/login"> Login </NavLink>
+          <NavLink to="/logout"> logOut </NavLink>
         </Navbar>
       </div>
     );

@@ -18,7 +18,7 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <div></div>
+      <div> Hey im in the Home Container</div>
     );
   }
 }
