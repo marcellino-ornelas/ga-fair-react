@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withAuth from "../../components/WithAuth/WithAuth"
 import './ProfileContainer.css';
 
 class ProfileContainer extends Component {
@@ -10,4 +11,4 @@ class ProfileContainer extends Component {
   }
 }
 
-export default ProfileContainer;
+export default withAuth(ProfileContainer);
