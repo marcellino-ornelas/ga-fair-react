@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Nav from "../Nav/Nav";
-import './Header.css';
+import './Login.css';
 
-class Header extends Component {
+class Login extends Component {
   // constructor(props){
     // super();
     // this.state = {};
@@ -19,11 +18,9 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="App-header">
-        <Nav/>
-      </header>
+      <div></div>
     );
   }
 }
 
-export default Header;
+export default Login;
