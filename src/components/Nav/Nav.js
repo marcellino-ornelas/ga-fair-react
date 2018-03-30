@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Modal, NavItem, Button } from "react-materialize";
+import { Navbar, Modal, NavItem, Button, Row, Col } from "react-materialize";
 import { NavLink } from "react-router-dom";
 import './Nav.css';
 
@@ -27,16 +27,20 @@ class Nav extends Component {
       <div>
         <Navbar brand="WAYFAIR" right>
           <NavLink to="/"> Home </NavLink>
+
           {/*<NavItem onClick={ this.activateModal } href="javascript:void(0)"> Login </NavItem>
-          <NavItem onClick={ this.activateModal } href="javascript:void(0)"> SignUp </NavItem>
-          <Modal
+          <NavItem onClick={ this.activateModal } href="javascript:void(0)"> SignUp </NavItem>*/}
+          {/*<Modal
             id="login-signup"
             modalOptions={ { dismissible: this.state.dismissible } }
             header='Sign Up or Log In'
             open={this.state.openModal}
-            bottomSheet
             actions={ <Button onClick={()=> this.setState({ openModal: false})}> Close </Button>}>
-            <Login></Login>
+            <Row>
+              <Col s={5}><Login  name="Sign Up" action="/signup" /></Col>
+              <Col s={1} className="line"></Col>
+              <Col s={5}> <Login name="Login" action="/login" /></Col>
+            </Row>
           </Modal>*/}
         </Navbar>
       </div>
