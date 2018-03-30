@@ -27,8 +27,7 @@ class Nav extends Component {
       <div>
         <Navbar brand="WAYFAIR" right>
           <NavLink to="/"> Home </NavLink>
-          <NavLink to="/login"> Login </NavLink>
-          <NavLink to="/login"> signup </NavLink>
+
           {/*<NavItem onClick={ this.activateModal } href="javascript:void(0)"> Login </NavItem>
           <NavItem onClick={ this.activateModal } href="javascript:void(0)"> SignUp </NavItem>*/}
           {/*<Modal
@@ -41,8 +40,6 @@ class Nav extends Component {
               <Col s={5}><Login  name="Sign Up" action="/signup" /></Col>
               <Col s={1} className="line"></Col>
               <Col s={5}> <Login name="Login" action="/login" /></Col>
-
-
             </Row>
           </Modal>*/}
         </Navbar>
