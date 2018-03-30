@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
+import Nav from "../Nav/Nav";
 import './Header.css';
 
 class Header extends Component {
   // constructor(props){
     // super();
     // this.state = {};
-  // }
-
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
 
   render() {
     return (
-      <div></div>
+
+      <header>
+      <Nav/>
+      <div>
+      </div>
+      </header>
     );
   }
 }
