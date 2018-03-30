@@ -6,7 +6,7 @@ import {} from "react-materialize"
 
 
 
-import AuthServices from "../../components/AuthServices/AuthServices";
+// import AuthServices from "../../components/AuthServices/AuthServices";
 
 const path = require("path");
 
@@ -16,7 +16,8 @@ class Login extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.Auth = new AuthServices();
+    console.log(this.props)
+    this.Auth = this.props.auth
   }
 
   componentWillMount(){
@@ -29,10 +30,6 @@ class Login extends Component {
   // shouldComponentUpdate(){}
   // componentWillUpdate(){}
   // componentDidUpdate(){}
-
-  makeAction(endPoint){
-    return path.join("http://localhost:3001/", endPoint);
-  }
 
   handleChange(e){
     this.setState({

@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 
-import withAuth from "../../components/WithAuth/WithAuth"
+// import withAuth from "../../components/WithAuth/WithAuth"
 import './ProfileContainer.css';
 
-
-import './ProfileContainers.css';
-
-class ProfileContainers extends Component {
+class ProfileContainer extends Component {
   render() {
     return (
 
       <div> This is My Profile Container </div>
 
     )
-    }
-  };
+  }
+};
 
-export default withAuth(ProfileContainer);
+export default ProfileContainer

@@ -12,20 +12,33 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoggedIn: false }
-    this.Auth = new AuthServices();
+    this.state = {
+      isLoggedIn: false,
+      user: null
+    }
 
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
+    this.Auth = new AuthServices();
+    this.Auth.login = this.login.bind(this);
   }
 
-  login(){
-    this.Auth.login();
-    this.setState({ isLoggedIn: false })
+  login(username, password){
+    return this.Auth._login(username,password)
+      .then((res)=>{
+        if( !res.success) Promise.reject( res );
+
+        this.setState({
+          isLoggedIn: true
+          user: res.user
+        })
+    }).catch((err)=> Promise.reject(err))
   }
 
   logout(){
     this.Auth.logout();
+    this.setState({
+      user: null,
+      isLoggedIn: false
+    })
   }
 
   render() {
@@ -35,7 +48,10 @@ class App extends Component {
         <main>
           <Switch>
             <Route exact path="/" component={ HomeContainer } />
-            <Route exact path="/login" component={ LoginContainer } />
+            <Route
+              exact
+              path="/login"
+              render={ (props)=> <LoginContainer history={props.history} auth={ this.Auth }/> } />
             <Route exact path="/profile" component={ ProfileContainer } />
             <Route exact path="/check" render={ ()=> <div>This is a tester page</div> } />
             <Route path="/*" render={()=> <Redirect to="/" /> } />

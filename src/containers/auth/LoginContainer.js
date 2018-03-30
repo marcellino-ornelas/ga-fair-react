@@ -22,7 +22,7 @@ class LoginContainer extends Component {
   render() {
     return (
       <Row>
-        <Col s={5}><Login history={ this.props.history }/></Col>
+        <Col s={5}><Login history={ this.props.history } auth={this.props.auth} /></Col>
         <Col s={1} className="line"></Col>
         {/*<Col s={5}> <Login name="Login" action="/login" /></Col>*/}
       </Row>
