@@ -14,14 +14,19 @@ class App extends Component {
     super(props);
     this.state = { isLoggedIn: false }
     this.Auth = new AuthServices();
+
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   login(){
-    this.login()
-    this.setState({ isLoggedIn: true })
+    this.Auth.login();
+    this.setState({ isLoggedIn: false })
   }
 
-
+  logout(){
+    this.Auth.logout();
+  }
 
   render() {
     return (

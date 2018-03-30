@@ -44,7 +44,7 @@ class Login extends Component {
          this.props.history.replace('/');
       })
       .catch(err =>{
-          alert(err);
+          console.log(err);
       })
   }
 
