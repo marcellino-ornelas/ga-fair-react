@@ -19,15 +19,16 @@ class App extends Component {
       user: null
     }
 
+    this.setUser = this.setUser.bind(this)
+
     this.Auth = new AuthServices();
     this.Auth.login = this.login.bind(this);
+    this.Auth.signup = this.signup.bind(this);
     this.Auth.logout = this.logout.bind(this);
   }
 
   componentWillMount() {
       if (this.Auth.loggedIn()) {
-        console.log("how many time will it mount");
-         console.log(this.Auth.getProfile());
         this.setState({
           isLoggedIn: true
         })
@@ -35,30 +36,25 @@ class App extends Component {
         // clear local storage
         this.Auth._logout();
       }
-      // else {
-      //   try {
-      //     const profile = Auth.getProfile()
-      //     this.setState({
-      //         user: profile
-      //     })
-      //   }
-      //   catch(err){
-      //     Auth.logout()
-      //     this.props.history.replace('/login')
-      //   }
-      // }
     }
+
+  setUser(res){
+    this.setState({
+      isLoggedIn: true,
+      user: res.user
+    })
+  }
 
   login(username, password){
     return this.Auth._login(username,password)
-      .then((res)=>{
-        if( !res.success) Promise.reject( res );
+      .then(this.setUser)
+      // .catch((err)=> Promise.reject(err))
+  }
 
-        this.setState({
-          isLoggedIn: true,
-          user: res.user
-        })
-    }).catch((err)=> Promise.reject(err))
+  signup(username, password){
+    return this.Auth._signup(username,password)
+      .then(this.setUser)
+      // .catch((err)=> Promise.reject(err))
   }
 
   logout(e){

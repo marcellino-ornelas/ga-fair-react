@@ -32,7 +32,7 @@ class HomeContainer extends Component {
             <img alt="900x500" src="https://i.gocollette.com/img/cont/na/us/hi/waikikibeach_29497479_fotoliarf_5914_960x380.jpg" />
           </Carousel.Item>
         </Carousel>
-        <h2> Wayfarer is ...</h2>
+        <h2 className="header-space"> Wayfarer is ...</h2>
         <div className="container">
           <Row className="topics">
             <Col lg={4} md={12} s={12}>
