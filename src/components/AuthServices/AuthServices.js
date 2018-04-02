@@ -63,6 +63,16 @@ export default class AuthService {
         localStorage.removeItem('id_token');
     }
 
+    _signup(username, password){
+        return this.fetch(`${this.domain}/signup`, {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                password
+            })
+        })
+    }
+
     getProfile() {
         // Using jwt-decode npm package to decode the token
         return decode(this.getToken());
@@ -87,17 +97,23 @@ export default class AuthService {
             ...options
         })
             .then(this._checkStatus)
-            .then(response => response.json())
+            .then(this._handleAuth)
     }
 
     _checkStatus(response) {
         // raises an error in case response status is not a success
         if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
-            return response
+            return response.json()
         } else {
-            var error = new Error(response.statusText)
-            error.response = response
-            throw error
+            return Promise.reject({success:false, message:"interal server error"});
         }
+    }
+
+    _handleAuth(res){
+        // response must send a success field to let us know we can proceed
+        if( !res.success ) return Promise.reject(res)
+
+        return res
+
     }
 }
