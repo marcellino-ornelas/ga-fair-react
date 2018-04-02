@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import HomeContainer from "../../containers/Home/HomeContainer"
 import LoginContainer from "../../containers/auth/LoginContainer"
 import ProfileContainer from "../../containers/Profile/ProfileContainer"
+import CitiesContainer from "../../containers/Cities/CitiesContainer"
 
 import AuthServices from "../AuthServices/AuthServices";
 import './App.css';
@@ -27,7 +28,7 @@ class App extends Component {
         if( !res.success) Promise.reject( res );
 
         this.setState({
-          isLoggedIn: true
+          isLoggedIn: true,
           user: res.user
         })
     }).catch((err)=> Promise.reject(err))
@@ -54,6 +55,7 @@ class App extends Component {
               render={ (props)=> <LoginContainer history={props.history} auth={ this.Auth }/> } />
             <Route exact path="/profile" component={ ProfileContainer } />
             <Route exact path="/check" render={ ()=> <div>This is a tester page</div> } />
+            <Route exact path="/cities" component={ CitiesContainer } />
             <Route path="/*" render={()=> <Redirect to="/" /> } />
           </Switch>
         </main>
