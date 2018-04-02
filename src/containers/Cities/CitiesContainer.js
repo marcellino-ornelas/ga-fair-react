@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CitiesContainer.css';
-import { Navbar,FormGroup, FormControl, Button , Row , Col, Grid,} from 'react-bootstrap';
+import { FormGroup, FormControl, Button , Row , Col, Grid,} from 'react-bootstrap';
 
 import Cities from '../../components/Cities/Cities'
 import Post from '../../components/Post/Post'
@@ -26,25 +26,24 @@ class CitiesContainer extends Component {
     console.log(this.props);
     return (
       <div>
-        <Navbar>
-          <h1>Wayfarer</h1>
-          <Navbar.Header>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Navbar.Form pullRight>
-              <FormGroup>
-                <FormControl type="text" placeholder="Search" />
-              </FormGroup>
-              <Button type="submit">Submit</Button>
-            </Navbar.Form>
-          </Navbar.Collapse>
-        </Navbar>
+          <div className="section">
+            <Grid fluid={true}>
+              <Row className="search float-right">
+                <Col xs={9} md={8}>
+                  <FormGroup>
+                    <FormControl type="text" placeholder="Search" />
+                  </FormGroup>
+                </Col>
+                <Col xs={3} md={4}>
+                  <Button type="submit">Submit</Button>
+                </Col>
+              </Row>
+            </Grid>
+          </div>
         <Grid fluid={true}>
           <Row className="show-grid">
             <Col xs={12} md={3} >
               <h3>{'Cities'}</h3>
-              <Button bsStyle="info">Info</Button>
               <Cities />
             </Col>
             <Col xs={12} md={9} >
@@ -52,7 +51,7 @@ class CitiesContainer extends Component {
             </Col>
           </Row>
           </Grid>
-        </div>
+      </div>
 
 
     );

@@ -1,0 +1,10 @@
+.right{
+  text-align: right;
+}
+.line{
+  padding: 0 5%;
+  width:10%;
+  border-right: 2px solid grey;
+  height: 200px;
+  margin: auto;
+}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Button, Grid, FormGroup, FormControl, ControlLabel, Form} from "react-bootstrap";
-import { Input, Col } from "react-materialize";
+import { Row, Button, Grid, FormGroup, FormControl, ControlLabel, Form, Col} from "react-bootstrap";
 import './Login.css';
 
 // import AuthServices from "../../components/AuthServices/AuthServices";
@@ -18,15 +17,9 @@ class Login extends Component {
   }
 
   componentWillMount(){
+    // stop logged in users from loging in again
      if(this.Auth.loggedIn()) this.props.history.replace('/');
   }
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
 
   handleChange(e){
     this.setState({
@@ -37,60 +30,45 @@ class Login extends Component {
   handleSubmit(e){
     e.preventDefault();
 
-    this.Auth.login(this.state.username,this.state.password)
+    this.Auth[this.props.submitAction](this.state.username,this.state.password)
       .then(res =>{
          this.props.history.replace('/');
       })
       .catch(err =>{
-          console.log(err);
+          console.log(err.message);
       })
   }
 
   render() {
-      /*<Grid>
-        <h2 className="center-align"> Log In </h2>
-        <Row className="show-grid">
-        <Col xs={12}>
-          <Input s={12} type="text" name="username" placeholder="username" onChange={this.handleChange}></Input>
-        </Col>
-        </Row>
-        <Row className="show-grid">
-        <Col xs={12}>
-          <Input s={12} type="text" name="password" placeholder="password" onChange={this.handleChange}></Input>
-        </Col>
-        </Row>
-        <Row className="show-grid">
-        <Col xs={12}>
-          <Button type="submit" onClick={this.handleSubmit}> Submit </Button>
-        </Col>
-        </Row>
-      </Grid>*/
     return (
-      <Form horizontal>
-        <FormGroup controlId="formHorizontalEmail">
-          <Col sm={2}>
-            <ControlLabel> Username</ControlLabel>
-          </Col>
-          <Col sm={10}>
-            <FormControl type="username" placeholder="username" />
-          </Col>
-        </FormGroup>
+        <Form horizontal onSubmit={ this.handleSubmit }>
+         <h2> {this.props.name} </h2>
+          <FormGroup>
+            <Col sm={2} md={3}>
+              <ControlLabel> Username</ControlLabel>
+            </Col>
+            <Col sm={10} md={9}>
+              <FormControl type="username" name="username" placeholder="username" onChange={this.handleChange} />
+            </Col>
+          </FormGroup>
 
-        <FormGroup controlId="formHorizontalPassword">
-          <Col sm={2}>
-            <ControlLabel> Password </ControlLabel>
-          </Col>
-          <Col sm={10}>
-            <FormControl type="password" placeholder="Password" />
-          </Col>
-        </FormGroup>
+          <FormGroup>
+            <Col sm={2} md={3}>
+              <ControlLabel> Password </ControlLabel>
+            </Col>
+            <Col sm={10} md={9}>
+              <FormControl type="password" name="password" placeholder="Password" onChange={this.handleChange} />
+            </Col>
+          </FormGroup>
 
-        <FormGroup>
-          <Col sm={10}>
-            <Button type="submit">Sign in</Button>
-          </Col>
-        </FormGroup>
-      </Form>
+          <FormGroup>
+            <Col xs={12}>
+              <div className="right">
+                <Button type="submit" bsStyle="primary"> {this.props.name} </Button>
+              </div>
+            </Col>
+          </FormGroup>
+        </Form>
     );
   }
 };

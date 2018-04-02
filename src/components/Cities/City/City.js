@@ -18,20 +18,9 @@ class City extends Component {
 
   render() {
     return (
-    <div>
       <li className="list-group-item">
-        London
+        {this.props.name}
       </li>
-      <li className="list-group-item">
-        Sydney
-      </li>
-      <li className="list-group-item">
-        San Francisco
-      </li>
-      <li className="list-group-item">
-        Seattle
-      </li>
-    </div>
     );
   }
 }
