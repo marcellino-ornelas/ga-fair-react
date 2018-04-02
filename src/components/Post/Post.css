@@ -1,6 +1,13 @@
 h1{
   margin-left:6em;
 }
-.posts{
-  margin-top: 25em;
+
+.post-img{
+  display: block;
+  width: 200px;
+  height: 200px;
+  vertical-align: initial;
+}
+i{
+  color:red;
 }

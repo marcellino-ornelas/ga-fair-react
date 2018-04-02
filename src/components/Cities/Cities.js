@@ -20,9 +20,10 @@ class Cities extends Component {
 
   render() {
     const dummySentences = [
-      'London'
+      'London','Sydney','San Francisco','Seattle'
+
     ];
-    const allCities = dummySentences.map( (item,index)=> <City key={index} data={item} />);
+    const allCities = dummySentences.map( (item,index)=> <City key={index} name={item} />);
     return (
   <div>
     <ListGroup componentClass="ul">
