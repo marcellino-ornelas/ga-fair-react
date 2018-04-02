@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './LoginContainer.css';
 
 import Login from "../../components/Login/Login";
-import { Row, Col } from "react-materialize";
+import { Row, Col, Grid } from "react-bootstrap";
 
 class LoginContainer extends Component {
   // constructor(props){
@@ -20,12 +20,17 @@ class LoginContainer extends Component {
   // componentDidUpdate(){}
 
   render() {
+          /*<Col s={5}> <Login name="Login" action="/login" /></Col>*/
     return (
-      <Row>
-        <Col s={5}><Login history={ this.props.history } auth={this.props.auth} /></Col>
-        <Col s={1} className="line"></Col>
-        {/*<Col s={5}> <Login name="Login" action="/login" /></Col>*/}
-      </Row>
+      <Grid>
+        <Row>
+          <Col sm={12} md={5}  >
+            <Login history={ this.props.history } auth={this.props.auth} />
+          </Col>
+          <Col sm={0} md={1}></Col>
+          <Col sm={12} md={5}></Col>
+        </Row>
+      </Grid>
     );
   }
 }

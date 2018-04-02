@@ -4,3 +4,12 @@ body {
   font-family: sans-serif;
 }
 
+.section{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+*.row{
+  margin-right: auto;
+  margin-left: auto;
+}
