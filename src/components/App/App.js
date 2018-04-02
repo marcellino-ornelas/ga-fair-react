@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import HomeContainer from "../../containers/Home/HomeContainer"
 import LoginContainer from "../../containers/auth/LoginContainer"
 import ProfileContainer from "../../containers/Profile/ProfileContainer"
+import CitiesContainer from "../../containers/Cities/CitiesContainer"
 
 import AuthServices from "../AuthServices/AuthServices";
 import './App.css';
@@ -80,7 +81,8 @@ class App extends Component {
               exact
               path="/login"
               render={ (props)=> <LoginContainer history={props.history} auth={ this.Auth }/> } />
-            {/*<Route exact path="/cities" component={ ProfileContainer } />*/}
+            <Route exact path="/profile" component={ ProfileContainer } />
+            <Route exact path="/cities" component={ CitiesContainer } />
             <Route exact path="/about" render={ ()=> <div>This is a about page</div> } />
             <Route path="/profile" render={ (props) => {
               return this.state.isLoggedIn ?
