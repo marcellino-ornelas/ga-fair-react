@@ -19,17 +19,17 @@ class Cities extends Component {
   // componentDidUpdate(){}
 
   render() {
-    const dummySentences = [
-      'London','Sydney','San Francisco','Seattle'
+    // const dummySentences = [
+    //   'London','Sydney','San Francisco','Seattle'
 
-    ];
-    const allCities = dummySentences.map( (item,index)=> <City key={index} name={item} />);
+    // ];
+    const allCities = this.props.locations.map( (location, index)=> <City key={index} location={location} changeLocation={this.props.changeLocation}/>);
     return (
-  <div>
-    <ListGroup componentClass="ul">
-        {allCities}
-    </ListGroup>
-  </div>
+      <div>
+        <ListGroup componentClass="ul">
+            {allCities}
+        </ListGroup>
+      </div>
     );
   }
 }

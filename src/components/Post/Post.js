@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import axios from "axios";
+import makeCancelable from "cancel-that-promise"
 import './Post.css';
 import { Grid, Row, Col, ListGroup, ListGroupItem, Modal, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
+
+
 class Post extends Component {
+
   constructor(props, context){
     super(props, context);
-  this.handleShow = this.handleShow.bind(this);
-  this.handleClose = this.handleClose.bind(this);
-
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+ 
   this.state ={
-    show: false
+    show: false,
+    posts:[]
   };
 }
 
@@ -21,9 +27,18 @@ class Post extends Component {
     this.setState({ show: false });
   }
 
-  // componentWillMount(){}
+  componentDidMount(){
+    console.log("yess we in the post.......");
+      this.cancelFetch = makeCancelable(
+        axios.get("http://localhost:3001/post"),
+        (res) => { this.setState({ posts: res.data.posts }); },
+        (err) => {console.log(err); }
+      );
+  }
   // componentDidMount(){}
-  // componentWillUnmount(){}
+  componentWillUnmount(){
+    this.cancelFetch();
+  }
 
   // componentWillReceiveProps(){}
   // shouldComponentUpdate(){}
@@ -31,7 +46,7 @@ class Post extends Component {
   // componentDidUpdate(){}
 
   render() {
-    < Modal />
+    console.log(this.state);
     return (
 
     <div>

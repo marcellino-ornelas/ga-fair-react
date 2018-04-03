@@ -7,7 +7,7 @@ export default class AuthService {
         this.fetch = this.fetch.bind(this) // React binding stuff
         this._login = this._login.bind(this)
         this.loggedIn = this.loggedIn.bind(this)
-        this.getProfile = this.getProfile.bind(this)
+        this._getProfile = this._getProfile.bind(this)
         this._checkStatus = this._checkStatus.bind(this)
     }
 
@@ -73,9 +73,19 @@ export default class AuthService {
         })
     }
 
-    getProfile() {
+    _getProfile() {
         // Using jwt-decode npm package to decode the token
-        return decode(this.getToken());
+        let id = decode(this.getToken()).user_id;
+        console.log("fetching user info")
+
+        return this.fetch(`${this.domain}/users/${id}`)
+                .then(function(res){
+                    console.log("user fetched")
+                    console.log("has user info? " + !!res.user._id)
+                    if( !res.user ) return Promise.reject(res)
+                    else return res
+                })
+
     }
 
 
