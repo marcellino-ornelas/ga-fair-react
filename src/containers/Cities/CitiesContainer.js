@@ -5,7 +5,7 @@ import makeCancelable from "cancel-that-promise"
 import { FormGroup, FormControl, Button , Row , Col, Grid,} from 'react-bootstrap';
 
 import Cities from '../../components/Cities/Cities'
-import Post from '../../components/Post/Post'
+import Location from '../../components/Location/Location'
 
 class CitiesContainer extends Component {
   constructor(props){
@@ -46,7 +46,7 @@ class CitiesContainer extends Component {
   render() {
     return (
       <div>
-      
+
         <Grid fluid={true}>
           <Row className="show-grid">
             <Col xs={12} md={3} >
@@ -56,7 +56,7 @@ class CitiesContainer extends Component {
             <Col xs={12} md={9} >
               {
                 this.state.locationId ?
-                  <Post locationId={this.state.locationId}/> :
+                  <Location locationId={this.state.locationId} locations={ this.state.locations } user={this.props.user}/> :
                   <h3> Please select a location to use </h3>
               }
             </Col>

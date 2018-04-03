@@ -13,11 +13,13 @@ class ProfileContainer extends Component {
     console.log("this should be render after home")
     this.Auth = props.auth
   }
-    
+
+
 
   render() {
     return (
       <div>
+        <div> username: {this.props.user.username}  </div>
         <ProfileHeader />
         <Main />
 

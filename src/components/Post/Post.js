@@ -12,7 +12,7 @@ class Post extends Component {
     super(props, context);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
- 
+
   this.state ={
     show: false,
     posts:[]
@@ -66,21 +66,21 @@ class Post extends Component {
                 <Modal.Title>Create Post</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-              <FormGroup controlId="formControlsSelect">
-                <ControlLabel>Cities</ControlLabel>
-                <FormControl componentClass="select" placeholder="select">
-                  <option value="select">London</option>
-                  <option value="select">Sydney</option>
-                  <option value="select">San Francisco</option>
-                  <option value="select">Seattle</option>
-                  <option value="other">...</option>
-              </FormControl>
-            </FormGroup>
+                <FormGroup controlId="formControlsSelect">
+                  <ControlLabel>Cities</ControlLabel>
+                  <FormControl componentClass="select" placeholder="select">
+                    <option value="select">London</option>
+                    <option value="select">Sydney</option>
+                    <option value="select">San Francisco</option>
+                    <option value="select">Seattle</option>
+                    <option value="other">...</option>
+                </FormControl>
+              </FormGroup>
 
-          <FormGroup controlId="formControlsTextarea">
-              <ControlLabel>Text</ControlLabel>
-              <FormControl componentClass="textarea" placeholder="textarea" />
-          </FormGroup>
+              <FormGroup controlId="formControlsTextarea">
+                  <ControlLabel>Text</ControlLabel>
+                  <FormControl componentClass="textarea" placeholder="textarea" />
+              </FormGroup>
 
               </Modal.Body>
               <Modal.Footer>

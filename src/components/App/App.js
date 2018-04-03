@@ -32,11 +32,6 @@ class App extends Component {
   componentDidMount(){
 
     if(this.state.isLoggedIn && !this.state.user._id ){
-      // this.Auth._getProfile().
-      //   then(this.setUser)
-      //   .catch(() =>{
-      //     this.logout()
-      //   })
         this.cancelFetch = makeCancelable(
           this.Auth._getProfile(),
           this.setUser,
@@ -96,7 +91,9 @@ class App extends Component {
             <Route exact path="/login" render={ (props)=>{
               return <LoginContainer history={props.history} auth={ this.Auth }/>
             }}/>
-            <Route exact path="/cities" component={ CitiesContainer } />
+            <Route exact path="/cities" render={ (props)=>{
+               return <CitiesContainer {...props} user={this.state.user} /> 
+             }} />
             <Route exact path="/about" render={ ()=> <div>This is a about page</div> } />
             <Route path="/profile" render={ (props) => {
               return this.state.isLoggedIn ?
