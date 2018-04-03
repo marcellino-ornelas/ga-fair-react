@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.cancelFetch();
+    this.cancelFetch && this.cancelFetch();
   }
 
   setUser(res){
@@ -68,7 +68,6 @@ class App extends Component {
   login(username, password){
     return this.Auth._login(username,password)
       .then(this.setUser)
-      // .catch((err)=> Promise.reject(err))
   }
 
   signup(username, password){

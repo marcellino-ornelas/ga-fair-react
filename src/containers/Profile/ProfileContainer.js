@@ -15,12 +15,6 @@ class ProfileContainer extends Component {
   }
     
 
-  componentWillMount(){}
-
-//   render() {
-//     return (
-//       <div> username: {this.props.user.username}  </div>
-  )}
   render() {
     return (
       <div>
