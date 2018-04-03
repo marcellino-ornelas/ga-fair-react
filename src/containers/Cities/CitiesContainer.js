@@ -21,9 +21,8 @@ class CitiesContainer extends Component {
   // componentWillMount(){}
   componentDidMount(){
     this.cancelFetch = makeCancelable(
-      axios.get("https://radiant-ravine-90267.herokuapp.com/location"),
+      axios.get('https://radiant-ravine-90267.herokuapp.com/location'),
       (res) => {console.log(res);this.setState({ locations: res.data.locations })},
-
       (error) => console.log(error)
     );
   }
@@ -33,7 +32,7 @@ class CitiesContainer extends Component {
 
   changeLocation(e){
     // get id from li
-    let id = (e.target.dataset || {}).id || e.target.attributes["data-id"]
+    let id = (e.target.dataset || {}).id || e.target.attributes["data-id"];
     console.log(id)
     this.setState({ locationId: id })
   }
