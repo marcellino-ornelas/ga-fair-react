@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './City.css';
 
 class City extends Component {
-  // constructor(props){
-    // super();
-    // this.state = {};
-  // }
+  constructor(props){
+    super();
+    this.state = {};
+
+    // this.handleClick = this.handleClick.bind(this)
+  }
 
   // componentWillMount(){}
   // componentDidMount(){}
@@ -16,10 +18,17 @@ class City extends Component {
   // componentWillUpdate(){}
   // componentDidUpdate(){}
 
+  // handleClick(e){
+  //   let id = this.props.location._id
+
+  //   this.props.changeLocation(id);
+  // }
+
   render() {
+    let location = this.props.location;
     return (
-      <li className="list-group-item">
-        {this.props.name}
+      <li className="list-group-item" data-id={location._id} onClick={this.props.changeLocation}>
+        {location.country}
       </li>
     );
   }

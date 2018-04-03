@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import makeCancelable from "cancel-that-promise"
 import './Post.css';
 import { Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 
@@ -15,17 +16,17 @@ class Post extends Component {
   }
 
   componentDidMount(){
-    console.log("yess we in the post.......")
-    axios.get("http://localhost:3001/post")
-      .then((res) => {
-        this.setState({ posts: res.data.posts });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    console.log("yess we in the post.......");
+      this.cancelFetch = makeCancelable(
+        axios.get("http://localhost:3001/post"),
+        (res) => { this.setState({ posts: res.data.posts }); },
+        (err) => {console.log(err); }
+      );
   }
   // componentDidMount(){}
-  componentWillUnmount(){}
+  componentWillUnmount(){
+    this.cancelFetch();
+  }
 
   // componentWillReceiveProps(){}
   // shouldComponentUpdate(){}
