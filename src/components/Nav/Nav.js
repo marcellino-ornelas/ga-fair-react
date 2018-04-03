@@ -14,8 +14,7 @@ class Nav extends Component {
     let navLinks = [
       { name: "Home" , link: "/" },
       { name: "About", link: "/about" },
-      { name: "Cites" , link: "/cities" },
-      { name: "Profile", link: "/profile" }
+      { name: "Cities" , link: "/cities" }
     ];
 
     if(this.props.isLoggedIn){

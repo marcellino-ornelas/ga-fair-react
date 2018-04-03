@@ -5,7 +5,7 @@ import './NavItem.css';
 class NavItem extends Component {
   render() {
     return (
-      <li role="presentation"> <NavLink to={this.props.to}> {this.props.name} </NavLink> </li>
+      <li role="presentation"> <NavLink to={this.props.to}> {this.props.name} </NavLink></li>
     );
   }
 }
