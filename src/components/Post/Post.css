@@ -8,6 +8,12 @@ h1{
   height: 200px;
   vertical-align: initial;
 }
-i{
-  color:red;
+.icon{
+margin-left: 20em;
+font-size: 34px;
+margin-top: 1em;
+background: red;
+}
+.formControlsTextarea{
+  margin-bottom: 3em;
 }

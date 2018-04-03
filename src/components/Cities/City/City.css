@@ -16,6 +16,6 @@ li.list-group-item {
     padding: 30px 24px;
 }
 
-li:hover{
+.list-group-item:hover{
   background: orange;
 }
