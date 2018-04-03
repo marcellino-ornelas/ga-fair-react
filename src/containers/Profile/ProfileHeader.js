@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { Navbar,FormGroup, FormControl, Button , Row , Col, Grid,} from 'react-bootstrap';
-import Post from '../../components/Post/Post';
-import ProfileHeader from './ProfileHeader';
-import Main from './Main';
 
 // import withAuth from "../../components/WithAuth/WithAuth"
 import './ProfileContainer.css';
 
-class ProfileContainer extends Component {
+class ProfileHeader extends Component {
   render() {
     return (
-      <div>
-        <ProfileHeader />
-        <Main />
-
-      </div>
+      <header className="vertical-center">
+        <div>
+          <h1>User Profile</h1>
+        </div>
+      </header>
     )
   }
 };
 
-export default ProfileContainer
+export default ProfileHeader;
