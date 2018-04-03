@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
+import axios from "axios";
 import './Post.css';
 import { Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-class Post extends Component {
-  // constructor(props){
-    // super();
-    // this.state = {};
-  // }
 
-  // componentWillMount(){}
+
+class Post extends Component {
+  constructor(props){
+    super();
+    this.state = {
+      posts: []
+    };
+  }
+
+  componentWillMount(){
+    console.log("yess we in the post.......")
+    axios.get("http://localhost:3001/post")
+      .then(function(res){
+        this.setState({ posts: res.posts });
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+  }
   // componentDidMount(){}
   // componentWillUnmount(){}
 

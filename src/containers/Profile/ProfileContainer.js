@@ -4,10 +4,30 @@ import React, { Component } from 'react';
 import './ProfileContainer.css';
 
 class ProfileContainer extends Component {
+  constructor(props){
+    super(props)
+    this.Auth = props.auth
+    this.state = {
+      user: props.user
+    }
+  }
+
+  componentWillMount(){
+    if(!this.props.user._id){
+      this.Auth._getProfile().
+        then((res) =>{
+          this.setState({ user: res.user })
+        })
+        .catch(() =>{
+          this.props.history.replace("/login")
+        })
+    }
+  }
+
   render() {
     return (
 
-      <div> This is My Profile Container </div>
+      <div> username: {this.state.user.username}  </div>
 
     )
   }
