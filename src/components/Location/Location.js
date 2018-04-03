@@ -16,6 +16,7 @@ class Location extends Component {
 
     this.state ={
       show: false,
+      location: {}
       posts:[]
     };
   }
@@ -23,8 +24,8 @@ class Location extends Component {
   componentDidMount(){
     console.log("yess we in the post.......");
     this.cancelFetch = makeCancelable(
-      axios.get("https://radiant-ravine-90267.herokuapp.com/post"),
-      (res) => { this.setState({ posts: res.data.posts }); },
+      axios.get(`https://radiant-ravine-90267.herokuapp.com/location/${this.props.locationId}`),
+      (res) => { this.setState({ location: res.data.location posts: res.data.location.posts || [] }); },
       (err) => {console.log(err); }
     );
   }
@@ -43,15 +44,14 @@ class Location extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
 
     <div>
       <Grid fluid={true}>
         <Row className="box-container">
           <Col xs={12} md={10}>
-            <h1>{this.props.locationId}</h1>
-              <img src="/images/london.jpeg" alt="P"/>
+            <h1>{this.state.location.city}</h1>
+            <img src="/images/london.jpeg" alt="P"/>
 
 
             <button className="icon" onClick={this.handleShow}>
@@ -87,7 +87,11 @@ class Location extends Component {
           </Col>
         </Row>
         <Row>
-          <Posts posts={this.state.posts} />
+          {
+            this.state.posts ?
+              <Posts posts={this.state.posts} /> :
+              <h3> There are no posts at this time </h3>
+          }
         </Row>
       </Grid>
     </div>
