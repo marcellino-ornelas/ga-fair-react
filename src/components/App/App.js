@@ -32,11 +32,6 @@ class App extends Component {
   componentDidMount(){
 
     if(this.state.isLoggedIn && !this.state.user._id ){
-      // this.Auth._getProfile().
-      //   then(this.setUser)
-      //   .catch(() =>{
-      //     this.logout()
-      //   })
         this.cancelFetch = makeCancelable(
           this.Auth._getProfile(),
           this.setUser,

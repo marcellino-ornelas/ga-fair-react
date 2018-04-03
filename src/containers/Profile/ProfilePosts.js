@@ -5,7 +5,7 @@ import axios from 'axios';
 // import withAuth from "../../components/WithAuth/WithAuth"
 // import './ProfileContainer.css';
 
-class ProfilePosts extends Component {
+class Posts extends Component {
   //new
   constructor() {
     super();
@@ -14,17 +14,17 @@ class ProfilePosts extends Component {
     }
   }
 
-  componentDidMount() {
-    axios
-      .get(`https://radiant-ravine-90267.herokuapp.com/post`)
-      .then(response => {this.setState({ posts: response.data }, function(){
-        console.log(this.state.posts)
-      })
-        console.log(response.data)
-        }
-      )
-      .catch(err => console.log(err))
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get(`https://radiant-ravine-90267.herokuapp.com/post`)
+  //     .then(response => {this.setState({ posts: response.data }, function(){
+  //       console.log(this.state.posts)
+  //     })
+  //       console.log(response.data)
+  //       }
+  //     )
+  //     .catch(err => console.log(err))
+  // }
 
   render() {
     const postsList = [
@@ -60,4 +60,4 @@ class ProfilePosts extends Component {
   }
 };
 
-export default ProfilePosts;
+export default Posts;

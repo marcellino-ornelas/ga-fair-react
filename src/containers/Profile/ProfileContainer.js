@@ -19,11 +19,11 @@ class ProfileContainer extends Component {
 
 //   render() {
 //     return (
-//       <div> username: {this.props.user.username}  </div>
-//  )}
+  // )}
   render() {
     return (
       <div>
+        <div> username: {this.props.user.username}  </div>
         <ProfileHeader />
         <Main />
 
