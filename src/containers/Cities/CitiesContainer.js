@@ -26,20 +26,7 @@ class CitiesContainer extends Component {
     console.log(this.props);
     return (
       <div>
-          <div className="section">
-            <Grid fluid={true}>
-              <Row className="search float-right">
-                <Col xs={9} md={8}>
-                  <FormGroup>
-                    <FormControl type="text" placeholder="Search" />
-                  </FormGroup>
-                </Col>
-                <Col xs={3} md={4}>
-                  <Button type="submit">Submit</Button>
-                </Col>
-              </Row>
-            </Grid>
-          </div>
+      
         <Grid fluid={true}>
           <Row className="show-grid">
             <Col xs={12} md={3} >
