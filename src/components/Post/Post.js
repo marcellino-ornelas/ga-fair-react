@@ -16,10 +16,10 @@ class Post extends Component {
   componentWillMount(){
     console.log("yess we in the post.......")
     axios.get("http://localhost:3001/post")
-      .then(function(res){
+      .then((res) => {
         this.setState({ posts: res.posts });
       })
-      .catch(function(err){
+      .catch((err) => {
         console.log(err);
       })
   }
