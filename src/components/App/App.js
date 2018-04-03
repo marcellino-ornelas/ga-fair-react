@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.cancelFetch();
+    this.cancelFetch && this.cancelFetch();
   }
 
   setUser(res){

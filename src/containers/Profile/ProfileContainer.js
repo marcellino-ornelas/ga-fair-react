@@ -13,14 +13,14 @@ class ProfileContainer extends Component {
     console.log("this should be render after home")
     this.Auth = props.auth
   }
-    
+
 
   componentWillMount(){}
 
 //   render() {
 //     return (
 //       <div> username: {this.props.user.username}  </div>
-  )}
+//  )}
   render() {
     return (
       <div>
