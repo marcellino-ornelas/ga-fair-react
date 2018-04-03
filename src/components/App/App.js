@@ -63,7 +63,6 @@ class App extends Component {
   login(username, password){
     return this.Auth._login(username,password)
       .then(this.setUser)
-      // .catch((err)=> Promise.reject(err))
   }
 
   signup(username, password){
@@ -92,7 +91,9 @@ class App extends Component {
             <Route exact path="/login" render={ (props)=>{
               return <LoginContainer history={props.history} auth={ this.Auth }/>
             }}/>
-            <Route exact path="/cities" component={ CitiesContainer } />
+            <Route exact path="/cities" render={ (props)=>{
+               return <CitiesContainer {...props} user={this.state.user} /> 
+             }} />
             <Route exact path="/about" render={ ()=> <div>This is a about page</div> } />
             <Route path="/profile" render={ (props) => {
               return this.state.isLoggedIn ?

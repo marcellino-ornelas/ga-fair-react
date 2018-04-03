@@ -15,11 +15,7 @@ class ProfileContainer extends Component {
   }
 
 
-  componentWillMount(){}
 
-//   render() {
-//     return (
-  // )}
   render() {
     return (
       <div>

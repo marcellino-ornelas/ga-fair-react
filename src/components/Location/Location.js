@@ -13,6 +13,8 @@ class Location extends Component {
     super(props, context);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state ={
       show: false,
@@ -28,6 +30,10 @@ class Location extends Component {
       (res) => { this.setState({ location: res.data.location posts: res.data.location.posts || [] }); },
       (err) => {console.log(err); }
     );
+
+    this.state = {
+      owner: (this.props.user || {})._id
+    }
   }
   // componentDidMount(){}
   componentWillUnmount(){
@@ -41,9 +47,39 @@ class Location extends Component {
   handleClose(){
     this.setState({ show: false });
   }
+  handleSubmit(e){
+    e.preventDefault();
+    console.log(this.state)
+    if( !this.state.owner ) return alert("need to be logged in to send")
+
+    axios.post("https://radiant-ravine-90267.herokuapp.com/post",{
+      owner: this.state.owner._id,
+      postDescription: this.state.postDescription,
+      location: this.state.location,
+      image: "somebullshit",
+      title: this.state.title
+    })
+    .then((res)=>{
+      this.setState({
+        show: false,
+        posts: this.state.posts.concat(res.data.post)
+      })
+    })
+    // this.set
+  }
+
+  handleChange(e){
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
 
   render() {
+    const locationOptions = this.props.locations.map((location, index)=>{
+      return <option key={index} value={location._id}> {location.city} </option>
+    });
+
     return (
 
     <div>
@@ -64,24 +100,24 @@ class Location extends Component {
               </Modal.Header>
 
               <Modal.Body>
+                <FormGroup controlId="formControlsTextarea">
+                    <ControlLabel>Title</ControlLabel>
+                    <FormControl type="text" name="title" placeholder="title" onChange={this.handleChange}/>
+                </FormGroup>
                 <FormGroup controlId="formControlsSelect">
                   <ControlLabel>Cities</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select">
-                    <option value="select">London</option>
-                    <option value="select">Sydney</option>
-                    <option value="select">San Francisco</option>
-                    <option value="select">Seattle</option>
-                    <option value="other">...</option>
+                  <FormControl componentClass="select" placeholder="location" name="location" onChange={this.handleChange}>
+                    { locationOptions }
                   </FormControl>
                 </FormGroup>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel>Text</ControlLabel>
-                    <FormControl componentClass="textarea" placeholder="textarea" />
+                    <FormControl componentClass="textarea" name="postDescription" placeholder="textarea" onChange={this.handleChange}/>
                 </FormGroup>
               </Modal.Body>
 
               <Modal.Footer>
-                <Button onClick={this.handleClose}>Submit</Button>
+                <Button onClick={this.handleSubmit}>Submit</Button>
               </Modal.Footer>
             </Modal>
           </Col>

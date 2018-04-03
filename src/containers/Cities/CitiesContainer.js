@@ -55,7 +55,7 @@ class CitiesContainer extends Component {
             <Col xs={12} md={9} >
               {
                 this.state.locationId ?
-                  <Location locationId={this.state.locationId}/> :
+                  <Location locationId={this.state.locationId} locations={ this.state.locations } user={this.props.user}/> :
                   <h3> Please select a location to use </h3>
               }
             </Col>
