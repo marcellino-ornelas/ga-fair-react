@@ -23,7 +23,6 @@ class CitiesContainer extends Component {
   // componentDidUpdate(){}
 
   render() {
-    console.log(this.props);
     return (
       <div>
           <div className="section">

@@ -6,29 +6,15 @@ import './ProfileContainer.css';
 class ProfileContainer extends Component {
   constructor(props){
     super(props)
+    console.log("this should be render after home")
     this.Auth = props.auth
-    this.state = {
-      user: props.user
-    }
   }
 
-  componentWillMount(){
-    if(!this.props.user._id){
-      this.Auth._getProfile().
-        then((res) =>{
-          this.setState({ user: res.user })
-        })
-        .catch(() =>{
-          this.props.history.replace("/login")
-        })
-    }
-  }
+  componentWillMount(){}
 
   render() {
     return (
-
-      <div> username: {this.state.user.username}  </div>
-
+      <div> username: {this.props.user.username}  </div>
     )
   }
 };

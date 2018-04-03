@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from "../Nav/Nav";
 import { Route, Switch, Redirect } from "react-router-dom";
+import makeCancelable from "cancel-that-promise"
 
 import HomeContainer from "../../containers/Home/HomeContainer"
 import LoginContainer from "../../containers/auth/LoginContainer"
@@ -25,14 +26,42 @@ class App extends Component {
     this.Auth.login = this.login.bind(this);
     this.Auth.signup = this.signup.bind(this);
     this.Auth.logout = this.logout.bind(this);
-    // this.Auth.getProfile = this.getProfile.nind(this);
+    // this.Auth.getProfile = this.getProfile.bind(this);
+  }
+
+  componentDidMount(){
+
+    if(this.state.isLoggedIn && !this.state.user._id ){
+      // this.Auth._getProfile().
+      //   then(this.setUser)
+      //   .catch(() =>{
+      //     this.logout()
+      //   })
+        this.cancelFetch = makeCancelable(
+          this.Auth._getProfile(),
+          this.setUser,
+          this.logout
+        );
+    }
+  }
+
+  componentWillUnmount() {
+    this.cancelFetch();
   }
 
   setUser(res){
+    console.log(res)
     console.log("setting user ")
-    this.setState({
-      isLoggedIn: true,
-      user: res.user
+    return new Promise((resolve,reject) => {
+      try{
+        this.setState({
+          isLoggedIn: true,
+          user: res.user
+        }, resolve)
+        console.log(this.state)
+      } catch (e){
+        reject(e);
+      }
     })
   }
 
@@ -58,6 +87,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("rendering home")
     return (
       <div className="App">
         <Nav isLoggedIn={ this.state.isLoggedIn } logout={ this.Auth.logout } />
@@ -80,5 +110,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

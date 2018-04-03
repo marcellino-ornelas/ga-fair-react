@@ -8,23 +8,24 @@ import { Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 class Post extends Component {
   constructor(props){
     super();
+
     this.state = {
       posts: []
     };
   }
 
-  componentWillMount(){
+  componentDidMount(){
     console.log("yess we in the post.......")
     axios.get("http://localhost:3001/post")
       .then((res) => {
-        this.setState({ posts: res.posts });
+        this.setState({ posts: res.data.posts });
       })
       .catch((err) => {
         console.log(err);
       })
   }
   // componentDidMount(){}
-  // componentWillUnmount(){}
+  componentWillUnmount(){}
 
   // componentWillReceiveProps(){}
   // shouldComponentUpdate(){}
@@ -32,6 +33,7 @@ class Post extends Component {
   // componentDidUpdate(){}
 
   render() {
+    console.log(this.state)
     return (
     <div>
       <Grid fluid={true}>
