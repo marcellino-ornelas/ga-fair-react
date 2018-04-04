@@ -11,7 +11,7 @@ class Post extends Component {
 
         <div className="media-left"><img src={this.props.post.image} alt={this.props.image} /></div>
         <div className="media-body">
-          <h4 className="media-heading">{this.props.title}<br />
+          <h4 className="media-heading">{this.props.post.title}<br />
             <small><i className="fa fa-clock-o" /> Today, 2:00 am</small> </h4>
           <p>{this.props.post.postDescription}</p>
           <ul className="nav nav-pills pull-left ">
