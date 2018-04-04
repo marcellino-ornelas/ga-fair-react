@@ -12,20 +12,37 @@ class CitiesContainer extends Component {
     super();
     this.state = {
       locationId: false,
-      locations: []
+      locations: [],
+      location: {},
+      posts: []
     };
 
     this.changeLocation = this.changeLocation.bind(this);
+    this.addPost = this.addPost.bind(this);
+  }
+
+  addPost(res){
+
+    if( !res.data.success ){
+      return console.log(res.data.message);
+    }
+
+    this.setState({
+      posts: this.state.posts.concat(res.data.post)
+    });
   }
 
   // componentWillMount(){}
   componentDidMount(){
     this.cancelFetch = makeCancelable(
-      axios.get('https://radiant-ravine-90267.herokuapp.com/location'),
-      (res) => {console.log(res);this.setState({ locations: res.data.locations })},
+      // axios.get('https://radiant-ravine-90267.herokuapp.com/location'),
+
+      axios.get('http://localhost:3001/location'),
+      (res) => { console.log(res); this.setState({ locations: res.data.locations }) },
       (error) => console.log(error)
     );
   }
+
   componentWillUnmount(){
     this.cancelFetch();
   }
@@ -33,18 +50,21 @@ class CitiesContainer extends Component {
   changeLocation(e){
     // get id from li
     let id = (e.target.dataset || {}).id || e.target.attributes["data-id"];
-    this.setState({ locationId: id })
+    // this.setState({ locationId: id })
+
+    this.cancelFetch = makeCancelable(
+      // axios.get(`https://radiant-ravine-90267.herokuapp.com/location/${id}`),
+      axios.get(`http://localhost:3001/location/${id}`),
+      (res) => { this.setState({ location: res.data.location, posts: res.data.location.posts }) },
+      (err) => {console.log(err); }
+    );
+
   }
 
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
-
   render() {
+    console.log(this.state)
     return (
       <div>
-
         <Grid fluid={true}>
           <Row className="show-grid">
             <Col xs={12} md={3} >
@@ -53,13 +73,18 @@ class CitiesContainer extends Component {
             </Col>
             <Col xs={12} md={9} >
               {
-                this.state.locationId ?
-                  <Location locationId={this.state.locationId} locations={ this.state.locations } user={this.props.user}/> :
+                this.state.location._id ?
+                  <Location
+                    currentLocation={ this.state.location }
+                    locations={ this.state.locations }
+                    posts={ this.state.posts }
+                    addPost={ this.addPost }
+                    user={this.props.user}/> :
                   <h3> Please select a location to use </h3>
               }
             </Col>
           </Row>
-          </Grid>
+        </Grid>
       </div>
 
 

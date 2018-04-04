@@ -16,29 +16,28 @@ class Location extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    console.log(this.props.user)
-
-    this.state ={
+    this.state = {
       show: false,
-      location: {},
-      posts:[],
-      owner: (this.props.user || {})._id
+      // location: this.props.location,
+      posts: this.props.posts.concat(),
+      owner: (this.props.user || {})._id,
+      data:{}
     };
   }
 
-  componentDidMount(){
-    console.log("yess we in the post.......");
-    this.cancelFetch = makeCancelable(
-      axios.get(`https://radiant-ravine-90267.herokuapp.com/location/${this.props.locationId}`),
-      (res) => { this.setState({ location: res.data.location, posts: res.data.location.posts || [] }); },
-      (err) => {console.log(err); }
-    );
+  // componentDidMount(){
+  //   // console.log("yess we in the post.......");
+  //   // this.cancelFetch = makeCancelable(
+  //   //   axios.get(`https://radiant-ravine-90267.herokuapp.com/location/${this.props.locationId}`),
+  //   //   (res) => { this.setState({ location: res.data.location, posts: res.data.location.posts || [] }); },
+  //   //   (err) => {console.log(err); }
+  //   // );
 
-  }
+  // }
   // componentDidMount(){}
-  componentWillUnmount(){
-    this.cancelFetch();
-  }
+  // componentWillUnmount(){
+  //   this.cancelFetch();
+  // }
 
   handleShow() {
     this.setState({ show: true });
@@ -47,33 +46,36 @@ class Location extends Component {
   handleClose(){
     this.setState({ show: false });
   }
+
   handleSubmit(e){
     e.preventDefault();
-    console.log(this.state)
+
     if( !this.state.owner ) return alert("need to be logged in to send")
 
-    axios.post("https://radiant-ravine-90267.herokuapp.com/post",{
-      owner: this.state.owner,
-      postDescription: this.state.postDescription,
-      location: this.state.location,
+    let data = {
       image: "somebullshit",
+      owner: this.state.owner,
+      location: this.state.location,
+      postDescription: this.state.postDescription,
       title: this.state.title
-    })
-    .then((res)=>{
-      this.setState({
-        show: false,
-        posts: this.state.posts.concat(res.data.post)
+    }
+
+    // axios.post("https://radiant-ravine-90267.herokuapp.com/post", data)
+    axios.post("http://localhost:3001/post", data )
+    .then( (res) => {
+      this.setState({show: false}, () => {
+        this.props.addPost(res)
       })
     })
-    // this.set
+    .catch((err)=> console.log(err))
+
   }
 
   handleChange(e){
     this.setState({
-      [e.target.name]: e.target.value
+        [e.target.name]: e.target.value
     })
   }
-
 
   render() {
     const locationOptions = this.props.locations.map((location, index)=>{
@@ -86,9 +88,8 @@ class Location extends Component {
       <Grid fluid={true}>
         <Row className="box-container">
           <Col xs={12} md={10}>
-            <h1>{this.state.location.city}</h1>
-            <img src="/images/london.jpeg" alt="P"/>
-
+            <h1>{this.props.currentLocation.city}</h1>
+            <img src={this.props.currentLocation.image} alt="P"/>
 
             <button className="icon" onClick={this.handleShow}>
               <span className="glyphicon glyphicon-plus"></span>
@@ -124,8 +125,8 @@ class Location extends Component {
         </Row>
         <Row>
           {
-            this.state.posts ?
-              <Posts posts={this.state.posts} /> :
+            this.props.posts ?
+              <Posts posts={this.props.posts} /> :
               <h3> There are no posts at this time </h3>
           }
         </Row>
@@ -136,15 +137,3 @@ class Location extends Component {
 }
 
 export default Location;
-
-
-
-            // <div className="posts">
-            //   <h2>Posts</h2>
-            //     <ListGroup>
-            //       <div className="fx">
-            //         <img src="/images/face1.jpeg" className="post-img" alt="p" />
-            //         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960 with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            //         </div>
-            //     </ListGroup>
-            //   </div>

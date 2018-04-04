@@ -35,7 +35,7 @@ class App extends Component {
         this.cancelFetch = makeCancelable(
           this.Auth._getProfile(),
           this.setUser,
-          this.logout
+          this.Auth.logout
         );
     }
   }
@@ -72,7 +72,7 @@ class App extends Component {
   }
 
   logout(e){
-    e && e.preventDefault();
+    e && e.preventDefault && e.preventDefault();
     this.Auth._logout();
     this.setState({
       user: null,
@@ -92,7 +92,7 @@ class App extends Component {
               return <LoginContainer history={props.history} auth={ this.Auth }/>
             }}/>
             <Route exact path="/cities" render={ (props)=>{
-               return <CitiesContainer {...props} user={this.state.user} /> 
+               return <CitiesContainer {...props} user={this.state.user} />
              }} />
             <Route exact path="/about" render={ ()=> <div>This is a about page</div> } />
             <Route path="/profile" render={ (props) => {
