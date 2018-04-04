@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Navbar,FormGroup, FormControl, Button , Row , Col, Grid,} from 'react-bootstrap';
-import Post from '../../components/Post/Post';
 import ProfileHeader from './ProfileHeader';
 import Main from './Main';
 

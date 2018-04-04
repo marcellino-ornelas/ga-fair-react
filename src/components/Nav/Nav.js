@@ -26,25 +26,33 @@ class Nav extends Component {
     navLinks = navLinks.map((item,index)=> <NavItem key={index} to={item.link} name={item.name} /> )
 
     return (
-      <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#home">React-Bootstrap</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <NavList pullRight>
-            {navLinks}
-            {
-              this.props.isLoggedIn &&
-              <BSNavItem href="javascript:void(0)" onClick={this.props.logout}> Log Out </BSNavItem>
-            }
-          </NavList>
-        </Navbar.Collapse>
-      </Navbar>
+      <div>
+        {navLinks}
+      {
+        this.props.isLoggedIn &&
+        <BSNavItem href="javascript:void(0)" onClick={this.props.logout}> Log Out </>
+      }
+      </div>
     );
   }
 }
 
 export default Nav;
+
+// <Navbar>
+  // <Navbar.Header>
+    // <Navbar.Brand>
+      // <a href="#home">React-Bootstrap</a>
+    // </Navbar.Brand>
+    // <Navbar.Toggle />
+  // </Navbar.Header>
+  // <Navbar.Collapse>
+    // <NavList pullRight>
+      // {navLinks}
+      // {
+        // this.props.isLoggedIn &&
+        // <BSNavItem href="javascript:void(0)" onClick={this.props.logout}> Log Out </BSNavItem>
+      // }
+    // </NavList>
+  // </Navbar.Collapse>
+// </Navbar>
