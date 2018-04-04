@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Navbar,FormGroup, FormControl, Button , Row , Col, Grid,} from 'react-bootstrap';
 import Post from './ProfilePost';
 import axios from 'axios';
+import {
+  BrowserRouter as Router
+} from "react-router-dom";
 // import withAuth from "../../components/WithAuth/WithAuth"
 // import './ProfileContainer.css';
 
@@ -49,7 +52,7 @@ class Posts extends Component {
       <div>
 
         <div className="col-md-12">
-          <h1 className="page-header small">Recent Posts</h1>
+          <h1 className="page-header small">Recent Posts <button className="btn btn-primary settingsbtn">Settings</button></h1>
           <div className="media">
             {renderedPostsList}
           </div>
