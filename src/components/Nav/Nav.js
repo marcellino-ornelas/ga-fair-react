@@ -28,10 +28,7 @@ class Nav extends Component {
     return (
       <div>
         {navLinks}
-      {
-        this.props.isLoggedIn &&
-        <BSNavItem href="javascript:void(0)" onClick={this.props.logout}> Log Out </>
-      }
+        {this.props.isLoggedIn && <BSNavItem href="javascript:void(0)" onClick={this.props.logout}> Log Out </BSNavItem>}
       </div>
     );
   }
