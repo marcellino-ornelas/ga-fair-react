@@ -72,7 +72,7 @@ class App extends Component {
   }
 
   logout(e){
-    // e && e.preventDefault();
+    e && e.preventDefault && e.preventDefault();
     this.Auth._logout();
     this.setState({
       user: null,
