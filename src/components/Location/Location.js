@@ -53,7 +53,7 @@ class Location extends Component {
     if( !this.state.owner ) return alert("need to be logged in to send")
 
     let data = {
-      image: "somebullshit",
+      image: "/images/face1.jpeg",
       owner: this.state.owner,
       location: this.state.location,
       postDescription: this.state.postDescription,
