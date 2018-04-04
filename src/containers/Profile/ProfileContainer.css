@@ -411,3 +411,9 @@ Media Queries
     margin-right: 0;
   }
 }
+/* ----------------------------------------
+   Buttons
+------------------------------------------- */
+.btn, .btn-primary, .settingsbtn {
+  width: 10% !important;
+}
