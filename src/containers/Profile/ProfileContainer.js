@@ -15,8 +15,6 @@ class ProfileContainer extends Component {
     this.Auth = props.auth
   }
 
-
-
   render() {
     return (
       <div>

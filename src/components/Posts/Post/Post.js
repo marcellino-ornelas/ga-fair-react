@@ -19,9 +19,9 @@ class Post extends Component {
             <small><i className="fa fa-clock-o" /> Today, 2:00 am</small> </h4>
           <p>{this.props.post.postDescription}</p>
           <ul className="nav nav-pills pull-left ">
-            <li><a href title><i className="glyphicon glyphicon-thumbs-up" /> 3</a></li>
-            <li><a href title><i className=" glyphicon glyphicon-comment" /> 5</a></li>
-            <li><a href title><i className="glyphicon glyphicon-share-alt" /> 1</a></li>
+            <li><span className="glyphicon glyphicon-thumbs-up"></span> 3</li>
+            <li><span className=" glyphicon glyphicon-comment"></span> 5</li>
+            <li><span className="glyphicon glyphicon-share-alt"></span> 1</li>
           </ul>
         </div>
         <hr></hr>

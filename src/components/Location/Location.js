@@ -16,10 +16,13 @@ class Location extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+    console.log(this.props.user)
+
     this.state ={
       show: false,
-      location: {}
-      posts:[]
+      location: {},
+      posts:[],
+      owner: (this.props.user || {})._id
     };
   }
 
@@ -27,13 +30,10 @@ class Location extends Component {
     console.log("yess we in the post.......");
     this.cancelFetch = makeCancelable(
       axios.get(`https://radiant-ravine-90267.herokuapp.com/location/${this.props.locationId}`),
-      (res) => { this.setState({ location: res.data.location posts: res.data.location.posts || [] }); },
+      (res) => { this.setState({ location: res.data.location, posts: res.data.location.posts || [] }); },
       (err) => {console.log(err); }
     );
 
-    this.state = {
-      owner: (this.props.user || {})._id
-    }
   }
   // componentDidMount(){}
   componentWillUnmount(){
@@ -53,7 +53,7 @@ class Location extends Component {
     if( !this.state.owner ) return alert("need to be logged in to send")
 
     axios.post("https://radiant-ravine-90267.herokuapp.com/post",{
-      owner: this.state.owner._id,
+      owner: this.state.owner,
       postDescription: this.state.postDescription,
       location: this.state.location,
       image: "somebullshit",
