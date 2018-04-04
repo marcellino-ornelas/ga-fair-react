@@ -33,7 +33,6 @@ class CitiesContainer extends Component {
   changeLocation(e){
     // get id from li
     let id = (e.target.dataset || {}).id || e.target.attributes["data-id"];
-    console.log(id)
     this.setState({ locationId: id })
   }
 

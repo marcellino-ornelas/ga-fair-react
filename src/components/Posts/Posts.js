@@ -13,8 +13,8 @@ class Posts extends Component {
 
   render() {
   // instead of posts instead of postsList
-    const renderedPostsList = this.props.posts.map(post => {
-      return <Post post={post} />;
+    const renderedPostsList = this.props.posts.map((post,index) => {
+      return <Post key={index} post={post} />;
     });
 
     return (
